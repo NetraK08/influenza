@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Influenza — Where Creators Meet Brands</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink:       #c2185b;
+      --pink-light: #e91e8c;
+      --pink-glow:  #ff4da6;
+      --green:      #1b5e3b;
+      --green-mid:  #2e7d52;
+      --green-bright: #4caf78;
+      --dark:       #0a0a0f;
+      --dark2:      #111118;
+      --dark3:      #1a1a24;
+      --text:       #f0e8f0;
+      --muted:      #9e8fa0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(194,24,91,0.15);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, var(--pink-glow), var(--green-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--pink-glow); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: #fff !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 500 !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+      transition: box-shadow 0.3s !important;
+    }
+
+    .nav-cta:hover {
+      box-shadow: 0 0 20px rgba(255,77,166,0.5);
+      color: #fff !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* blob backgrounds */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .blob-pink  { width: 600px; height: 600px; background: var(--pink); top: -100px; right: -150px; animation: drift 8s ease-in-out infinite alternate; }
+    .blob-green { width: 500px; height: 500px; background: var(--green-mid); bottom: -80px; left: -100px; animation: drift 10s ease-in-out infinite alternate-reverse; }
+    .blob-pink2 { width: 300px; height: 300px; background: var(--pink-glow); bottom: 100px; right: 100px; opacity: 0.1; animation: drift 6s ease-in-out infinite alternate; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.05); }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(194,24,91,0.15);
+      border: 1px solid rgba(255,77,166,0.3);
+      color: var(--pink-glow);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      max-width: 820px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--pink-glow), var(--green-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: box-shadow 0.3s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(255,77,166,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(27,94,59,0.3);
+      color: var(--green-bright);
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border: 1px solid rgba(76,175,120,0.35);
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(27,94,59,0.55);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 1.5rem 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      animation: fadeUp 0.8s 0.6s ease both;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--pink-glow), var(--green-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--green-bright));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,77,166,0.2);
+      box-shadow: 0 12px 40px rgba(194,24,91,0.12);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    /* ── FOR WHO ── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .split-card {
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .split-card.brand {
+      background: linear-gradient(135deg, rgba(27,94,59,0.4), rgba(27,94,59,0.1));
+      border: 1px solid rgba(76,175,120,0.25);
+    }
+
+    .split-card.creator {
+      background: linear-gradient(135deg, rgba(194,24,91,0.3), rgba(194,24,91,0.05));
+      border: 1px solid rgba(255,77,166,0.25);
+    }
+
+    .split-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .split-card.brand h3 { color: var(--green-bright); }
+    .split-card.creator h3 { color: var(--pink-glow); }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .feature-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .feature-list li::before {
+      content: '✦';
+      font-size: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .split-card.brand li::before { color: var(--green-bright); }
+    .split-card.creator li::before { color: var(--pink-glow); }
+
+    /* ── AI FEATURE ── */
+    .ai-section {
+      background: var(--dark2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .ai-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .ai-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(194,24,91,0.2), rgba(76,175,120,0.2));
+      border: 1px solid rgba(255,77,166,0.3);
+      color: var(--pink-glow);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── CTA FOOTER ── */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(194,24,91,0.1) 0%, transparent 70%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .split { grid-template-columns: 1fr; }
+      .stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">influenza</div>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#who">For who</a></li>
+      <li><a href="#ai">AI Tools</a></li>
+      <li><a href="#join" class="nav-cta">Join waitlist</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-pink"></div>
+    <div class="blob blob-green"></div>
+    <div class="blob blob-pink2"></div>
+
+    <div class="hero-tag">🦠 Spread your influence</div>
+    <h1>Where <em>Creators</em> meet<br/>the right <em>Brands</em></h1>
+    <p class="hero-sub">
+      A matchmaking platform for content creators and brands —
+      connect, collaborate, and grow together with AI-powered tools.
+    </p>
+    <div class="hero-btns">
+      <a href="#join" class="btn-primary">I'm a Creator →</a>
+      <a href="#join" class="btn-secondary">I'm a Brand →</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Creators</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Brands</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">₹2Cr+</div>
+        <div class="stat-label">Deals closed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Powered</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Simple. Scroll. Connect. Create.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🏷️</div>
+        <h3>Set your profile</h3>
+        <p>Brands list their niche, budget, and follower requirements. Creators showcase their stats and content style.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <h3>Browse & match</h3>
+        <p>Scroll through creators or brands in an Instagram-style feed. Filter by niche, size, and price range.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Connect directly</h3>
+        <p>Brands reach out to creators, creators apply to campaigns — or both meet in the middle.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Collaborate</h3>
+        <p>Use built-in AI tools to brainstorm content ideas together, agree on deliverables, and track campaigns.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHO -->
+  <section class="section" id="who" style="background: var(--dark2);">
+    <h2 class="section-title">Built for both sides</h2>
+    <p class="section-sub">Whether you create or you market — influenza is your space.</p>
+    <div class="split">
+      <div class="split-card brand">
+        <h3>For Brands 🏢</h3>
+        <ul class="feature-list">
+          <li>Filter creators by niche, followers, price</li>
+          <li>Post campaigns with custom requirements</li>
+          <li>Browse creator portfolios and stats</li>
+          <li>AI-assisted content brief generation</li>
+          <li>Track campaign performance</li>
+        </ul>
+      </div>
+      <div class="split-card creator">
+        <h3>For Creators 🎥</h3>
+        <ul class="feature-list">
+          <li>Apply to brand campaigns that fit you</li>
+          <li>Get discovered by brands in your niche</li>
+          <li>Network with other creators (like LinkedIn)</li>
+          <li>AI tools to brainstorm content ideas</li>
+          <li>Manage all your collabs in one place</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SECTION -->
+  <section class="section ai-section" id="ai">
+    <div class="ai-inner">
+      <div class="ai-badge">✨ AI Powered</div>
+      <h2 class="section-title">Brainstorm smarter</h2>
+      <p class="section-sub" style="margin-bottom: 1rem;">
+        Stuck on ideas? Our built-in AI assistant helps brands and creators co-create content strategies — from hooks to hashtags, campaign angles to caption drafts.
+      </p>
+      <p style="color: var(--muted); font-size: 0.88rem; line-height: 1.7; max-width: 500px; margin: 0 auto 2.5rem;">
+        Tell it your niche, your audience, and your product — get a full content plan in seconds.
+      </p>
+      <a href="#join" class="btn-primary">Try AI brainstorm →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="join">
+    <h2>Ready to go <em style="font-style:italic; background: linear-gradient(135deg, var(--pink-glow), var(--green-bright)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">viral?</em></h2>
+    <p>Join the waitlist — we're launching soon.</p>
+    <div style="display:flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+      <input type="email" placeholder="your@email.com" style="padding: 0.85rem 1.5rem; border-radius: 50px; border: 1px solid rgba(255,77,166,0.3); background: rgba(255,255,255,0.05); color: var(--text); font-family: inherit; font-size: 0.95rem; outline: none; width: 280px;"/>
+      <button class="btn-primary">Join waitlist</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo" style="font-size: 1.2rem;">influenza</div>
+    <div>Made with 🩷 by two builders figuring it out</div>
+    <div>© 2025 Influenza</div>
+  </footer>
+
+</body>
+</html>
