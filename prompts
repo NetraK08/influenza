@@ -7,3 +7,254 @@ python generate_video.py
 
 
 pip install opencv-python
+
+import cv2
+import numpy as np
+import math
+
+# =========================
+# SETTINGS
+# =========================
+WIDTH = 898
+HEIGHT = 506
+FPS = 30
+DURATION = 8
+TOTAL_FRAMES = FPS * DURATION
+
+OUTPUT = "generated_background.mp4"
+
+# Colors sampled/approximated from the style
+COLORS = [
+    np.array([225, 232, 222], dtype=np.float32),  # light gray-green
+    np.array([192, 210, 192], dtype=np.float32),  # soft green-gray
+    np.array([157, 187, 163], dtype=np.float32),  # muted green
+    np.array([125, 163, 135], dtype=np.float32),  # darker soft green
+]
+
+# =========================
+# CREATE SMOOTH BLOB
+# =========================
+def create_blob(
+    width,
+    height,
+    center_x,
+    center_y,
+    radius_x,
+    radius_y,
+    angle,
+    color,
+    strength=1.0
+):
+    """
+    Creates a soft elliptical color blob.
+    """
+
+    y, x = np.mgrid[0:height, 0:width]
+
+    # Move origin to blob center
+    dx = x - center_x
+    dy = y - center_y
+
+    # Rotate blob
+    cos_a = np.cos(angle)
+    sin_a = np.sin(angle)
+
+    rx = dx * cos_a + dy * sin_a
+    ry = -dx * sin_a + dy * cos_a
+
+    # Elliptical Gaussian
+    distance = (rx / radius_x) ** 2 + (ry / radius_y) ** 2
+
+    alpha = np.exp(-distance * 1.5) * strength
+
+    return alpha.astype(np.float32), color
+
+
+# =========================
+# VIDEO WRITER
+# =========================
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+
+writer = cv2.VideoWriter(
+    OUTPUT,
+    fourcc,
+    FPS,
+    (WIDTH, HEIGHT)
+)
+
+# =========================
+# GENERATE FRAMES
+# =========================
+for frame_number in range(TOTAL_FRAMES):
+
+    # Normalized time: 0 -> 1
+    t = frame_number / TOTAL_FRAMES
+
+    # Start with a base color
+    image = np.ones(
+        (HEIGHT, WIDTH, 3),
+        dtype=np.float32
+    ) * COLORS[0]
+
+    # -------------------------------------------------
+    # BLOB 1 - Large green region
+    # -------------------------------------------------
+    x1 = WIDTH * (
+        0.15 +
+        0.10 * math.sin(t * math.pi * 2)
+    )
+
+    y1 = HEIGHT * (
+        0.15 +
+        0.12 * math.cos(t * math.pi * 2)
+    )
+
+    a1, c1 = create_blob(
+        WIDTH,
+        HEIGHT,
+        x1,
+        y1,
+        WIDTH * 0.55,
+        HEIGHT * 0.55,
+        t * 0.5,
+        COLORS[2],
+        1.0
+    )
+
+    # -------------------------------------------------
+    # BLOB 2 - Darker green
+    # -------------------------------------------------
+    x2 = WIDTH * (
+        0.85 +
+        0.12 * math.sin(t * math.pi * 2 + 1)
+    )
+
+    y2 = HEIGHT * (
+        0.65 +
+        0.18 * math.cos(t * math.pi * 2)
+    )
+
+    a2, c2 = create_blob(
+        WIDTH,
+        HEIGHT,
+        x2,
+        y2,
+        WIDTH * 0.45,
+        HEIGHT * 0.60,
+        -t * 0.7,
+        COLORS[3],
+        0.9
+    )
+
+    # -------------------------------------------------
+    # BLOB 3 - Light green
+    # -------------------------------------------------
+    x3 = WIDTH * (
+        0.50 +
+        0.20 * math.cos(t * math.pi * 2)
+    )
+
+    y3 = HEIGHT * (
+        0.90 +
+        0.10 * math.sin(t * math.pi * 2)
+    )
+
+    a3, c3 = create_blob(
+        WIDTH,
+        HEIGHT,
+        x3,
+        y3,
+        WIDTH * 0.60,
+        HEIGHT * 0.40,
+        t,
+        COLORS[1],
+        0.8
+    )
+
+    # -------------------------------------------------
+    # Blend blobs
+    # -------------------------------------------------
+    for alpha, color in [
+        (a1, c1),
+        (a2, c2),
+        (a3, c3)
+    ]:
+
+        alpha = alpha[:, :, None]
+
+        image = (
+            image * (1 - alpha)
+            + color * alpha
+        )
+
+    # -------------------------------------------------
+    # Add subtle organic distortion
+    # -------------------------------------------------
+    y, x = np.mgrid[0:HEIGHT, 0:WIDTH]
+
+    displacement_x = (
+        4 * np.sin(
+            y / 90 +
+            t * math.pi * 2
+        )
+    )
+
+    displacement_y = (
+        4 * np.cos(
+            x / 120 +
+            t * math.pi * 2
+        )
+    )
+
+    map_x = (
+        x.astype(np.float32)
+        + displacement_x
+    )
+
+    map_y = (
+        y.astype(np.float32)
+        + displacement_y
+    )
+
+    image = cv2.remap(
+        image,
+        map_x,
+        map_y,
+        interpolation=cv2.INTER_LINEAR,
+        borderMode=cv2.BORDER_REFLECT
+    )
+
+    # -------------------------------------------------
+    # Smooth the entire image
+    # -------------------------------------------------
+    image = cv2.GaussianBlur(
+        image,
+        (0, 0),
+        sigmaX=12
+    )
+
+    # Convert to uint8
+    frame = np.clip(
+        image,
+        0,
+        255
+    ).astype(np.uint8)
+
+    # OpenCV uses BGR
+    frame = cv2.cvtColor(
+        frame,
+        cv2.COLOR_RGB2BGR
+    )
+
+    writer.write(frame)
+
+    print(
+        f"Rendering frame "
+        f"{frame_number + 1}/{TOTAL_FRAMES}",
+        end="\r"
+    )
+
+writer.release()
+
+print("\nDone!")
+print("Saved as:", OUTPUT)
