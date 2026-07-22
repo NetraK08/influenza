@@ -230,19 +230,39 @@ section.block{ padding:30px 28px 90px; }
 .final-cta p{ color:var(--muted); margin-bottom:32px; }
 
 /* footer */
-footer{ border-top:1px solid var(--line); padding-top:50px; margin-top:20px; }
+footer{ background:var(--ink); color:var(--cream); padding-top:50px; margin-top:20px; }
 .marquee{ overflow:hidden; padding:14px 0; }
 .marquee-track{ display:flex; gap:52px; width:max-content; animation:scroll-left 32s linear infinite; }
 .marquee-track.reverse{ animation:scroll-right 28s linear infinite; }
 @keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 @keyframes scroll-right{ from{transform:translateX(-50%);} to{transform:translateX(0);} }
-.brand-logo{ font-family:var(--disp); font-weight:800; font-size:26px; color:var(--muted); white-space:nowrap; opacity:.5; transition:.2s; }
-.brand-logo:hover{ opacity:1; color:var(--pink); }
-.footer-bottom{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; padding:40px 28px 30px; max-width:1180px; margin:0 auto; }
-.footer-bottom .logo{ font-size:16px; }
-.footer-bottom .links{ display:flex; gap:22px; font-size:13px; color:var(--muted); }
-.footer-bottom .links a:hover{ color:var(--pink); }
-.footer-bottom .fine{ font-family:var(--mono); font-size:11px; color:var(--muted); }
+footer .brand-logo{ font-family:var(--disp); font-weight:700; font-size:26px; color:rgba(247,248,241,0.3); white-space:nowrap; transition:.2s; }
+footer .brand-logo:hover{ color:var(--pink); }
+
+.footer-main{ display:flex; justify-content:space-between; gap:50px; flex-wrap:wrap; padding:54px 28px 40px; max-width:1180px; margin:0 auto; }
+.footer-brand-col{ max-width:380px; }
+.footer-brand-row{ display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.footer-avatar{ width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--pink),var(--green)); display:flex; align-items:center; justify-content:center; font-family:var(--wordmark); font-weight:800; color:#fff; font-size:16px; flex-shrink:0; }
+.footer-brand-row .fname{ font-family:var(--wordmark); font-weight:800; font-size:20px; }
+.footer-desc{ font-size:14px; font-family:var(--body); line-height:1.6; color:rgba(247,248,241,0.6); margin-bottom:20px; }
+.footer-getintouch{ font-size:14px; font-family:var(--body); color:rgba(247,248,241,0.85); margin-bottom:22px; }
+.footer-getintouch a{ color:var(--cream); border-bottom:1px solid rgba(247,248,241,0.3); }
+.footer-getintouch a:hover{ color:var(--pink); border-color:var(--pink); }
+.footer-social-row{ display:flex; gap:10px; }
+.footer-social-btn{ width:40px; height:40px; border-radius:12px; background:rgba(247,248,241,0.08); display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:700; font-size:13px; transition:.2s; color:var(--cream); }
+.footer-social-btn:hover{ background:var(--pink); }
+
+.footer-nav-cols{ display:flex; gap:64px; }
+.footer-nav-col .fc-title{ font-family:var(--disp); font-weight:700; font-size:15px; margin-bottom:16px; color:var(--cream); }
+.footer-nav-col a{ display:block; font-family:var(--body); font-size:14px; color:rgba(247,248,241,0.6); margin-bottom:11px; }
+.footer-nav-col a:hover{ color:var(--pink); }
+
+.footer-copyright{ border-top:1px solid rgba(247,248,241,0.12); padding:20px 28px; text-align:center; font-family:var(--mono); font-size:11px; color:rgba(247,248,241,0.4); }
+
+@media (max-width:700px){
+  .footer-main{ flex-direction:column; }
+  .footer-nav-cols{ gap:40px; }
+}
 
 /* ---------- form pages ---------- */
 .form-page{ min-height:90vh; display:flex; align-items:center; padding:60px 28px; }
@@ -308,10 +328,9 @@ footer{ border-top:1px solid var(--line); padding-top:50px; margin-top:20px; }
   <div class="nav-inner">
     <div class="logo">influenza<span class="logo-dot">✦</span></div>
     <div class="tabs">
-      <button data-anchor="work" class="tab-btn active">Work</button>
-      <button data-anchor="how" class="tab-btn">Projects</button>
-      <button data-anchor="influencers" class="tab-btn">Influencers</button>
-      <button data-anchor="partnerships" class="tab-btn">Partnerships</button>
+      <button data-anchor="about-section" class="tab-btn active">About</button>
+      <button data-anchor="how" class="tab-btn">How it works</button>
+      <button data-anchor="contact-section" class="tab-btn">Contact</button>
     </div>
     <div class="nav-cta">
       <button onclick="goHomeThenAnchor()">Home</button>
@@ -358,41 +377,7 @@ footer{ border-top:1px solid var(--line); padding-top:50px; margin-top:20px; }
 
   <div class="glow-divider"></div>
 
-  <section class="block" id="how">
-    <div class="wrap">
-      <div class="head-row reveal">
-        <div>
-          <span class="eyebrow"><span class="sparkle g">✦</span> the highlight</span>
-          <h2>How it works</h2>
-        </div>
-        <p>Two sides, one match. Here's what happens the moment you pick a lane.</p>
-      </div>
-      <div class="split reveal">
-        <div class="split-col creators">
-          <div class="kicker">for content creators</div>
-          <h3>Get matched with brands that fit your niche — not just your follower count.</h3>
-          <ul class="steps">
-            <li><span class="n">01</span> Build a profile around your niche, audience, and rates.</li>
-            <li><span class="n">02</span> Get matched with brands actively looking for someone like you.</li>
-            <li><span class="n">03</span> Negotiate and get paid, all inside one thread.</li>
-          </ul>
-        </div>
-        <div class="split-col brands">
-          <div class="kicker">for brands &amp; small business</div>
-          <h3>Find creators who actually move your product, without an agency retainer.</h3>
-          <ul class="steps">
-            <li><span class="n">01</span> Post what you're selling and who you want to reach.</li>
-            <li><span class="n">02</span> See a shortlist of creators ranked by real audience fit.</li>
-            <li><span class="n">03</span> Book a campaign in minutes, not weeks of DMs.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="glow-divider"></div>
-
-  <section class="block" id="work-section">
+  <section class="block" id="about-section">
     <div class="wrap">
       <div class="head-row reveal">
         <div>
@@ -432,18 +417,35 @@ footer{ border-top:1px solid var(--line); padding-top:50px; margin-top:20px; }
 
   <div class="glow-divider"></div>
 
-  <section class="block" id="influencers">
+  <section class="block" id="how">
     <div class="wrap">
       <div class="head-row reveal">
         <div>
-          <span class="eyebrow">the roster</span>
-          <h2 id="projects">Meet the Influencers &amp; Brands</h2>
+          <span class="eyebrow"><span class="sparkle g">✦</span> the highlight</span>
+          <h2>How it works</h2>
         </div>
-        <p id="partnerships">A live look at who's already spreading. Filter by category to see the kind of match Influenza makes.</p>
+        <p>Two sides, one match. Here's what happens the moment you pick a lane.</p>
       </div>
-
-      <div class="tag-filter reveal" id="tag-filter"></div>
-      <div class="card-row reveal" id="showcase-grid"></div>
+      <div class="split reveal">
+        <div class="split-col creators">
+          <div class="kicker">for content creators</div>
+          <h3>Get matched with brands that fit your niche — not just your follower count.</h3>
+          <ul class="steps">
+            <li><span class="n">01</span> Build a profile around your niche, audience, and rates.</li>
+            <li><span class="n">02</span> Get matched with brands actively looking for someone like you.</li>
+            <li><span class="n">03</span> Negotiate and get paid, all inside one thread.</li>
+          </ul>
+        </div>
+        <div class="split-col brands">
+          <div class="kicker">for brands &amp; small business</div>
+          <h3>Find creators who actually move your product, without an agency retainer.</h3>
+          <ul class="steps">
+            <li><span class="n">01</span> Post what you're selling and who you want to reach.</li>
+            <li><span class="n">02</span> See a shortlist of creators ranked by real audience fit.</li>
+            <li><span class="n">03</span> Book a campaign in minutes, not weeks of DMs.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -492,22 +494,45 @@ footer{ border-top:1px solid var(--line); padding-top:50px; margin-top:20px; }
     </div>
   </section>
 
-  <footer>
+  <footer id="contact-section">
     <div class="marquee">
       <div class="marquee-track" id="marquee-1"></div>
     </div>
     <div class="marquee">
       <div class="marquee-track reverse" id="marquee-2"></div>
     </div>
-    <div class="footer-bottom">
-      <div class="logo">influenza<span class="logo-dot">✦</span></div>
-      <div class="links">
-        <a href="#work-section">Work</a>
-        <a href="#influencers">Influencers</a>
-        <a href="#founders">Founders</a>
+
+    <div class="footer-main">
+      <div class="footer-brand-col">
+        <div class="footer-brand-row">
+          <div class="footer-avatar">✦</div>
+          <div class="fname">influenza</div>
+        </div>
+        <p class="footer-desc">The matchmaking layer between creators and brands — swipe, match, and collab without the cold DMs.</p>
+        <div class="footer-getintouch">Get in Touch: <a href="mailto:hello@influenza.app">hello@influenza.app</a></div>
+        <div class="footer-social-row">
+          <a class="footer-social-btn" href="#" aria-label="Instagram">IG</a>
+          <a class="footer-social-btn" href="#" aria-label="LinkedIn">in</a>
+        </div>
       </div>
-      <div class="fine">© 2026 INFLUENZA — spread responsibly</div>
+
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <div class="fc-title">Sections</div>
+          <a href="#about-section">What is Influenza?</a>
+          <a href="#how">How it works</a>
+          <a href="#founders">Founders</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="fc-title">Pages</div>
+          <a onclick="navigate('home')">Home</a>
+          <a onclick="navigate('creator-register')">I'm a Creator</a>
+          <a onclick="navigate('brand-register')">I'm a Brand</a>
+        </div>
+      </div>
     </div>
+
+    <div class="footer-copyright">© 2026 influenza — spread responsibly</div>
   </footer>
 </div>
 
@@ -685,67 +710,8 @@ function fillCategorySelect(id){
 fillCategorySelect('creator-category');
 fillCategorySelect('brand-category');
 
-/* ================= SHOWCASE (home page mixed grid) ================= */
-const filterState = { active: "All" };
-
 function initials(name){ return name.split(' ').map(w=>w[0]).slice(0,2).join(''); }
 function paletteFor(seed){ return PALETTE[seed % PALETTE.length]; }
-
-function renderShowcase(){
-  const grid = document.getElementById('showcase-grid');
-  grid.innerHTML = '';
-  const items = [];
-  INFLUENCERS.forEach((inf,i)=>items.push({type:'influencer', data:inf, seed:i}));
-  BRANDS.forEach((b,i)=>items.push({type:'brand', data:b, seed:i+2}));
-
-  const filtered = filterState.active === "All" ? items : items.filter(it=>it.data.cat===filterState.active);
-
-  filtered.slice(0,8).forEach(it=>{
-    const [bg,fg] = paletteFor(it.seed);
-    const card = document.createElement('div');
-    card.className = 'profile-card';
-    if(it.type==='influencer'){
-      const d = it.data;
-      card.innerHTML = `
-        <span class="brand-badge">👤</span>
-        <div class="avatar" style="background:${bg};color:${fg}">${initials(d.name)}</div>
-        <h4>${d.name}</h4>
-        <span class="handle">${d.handle} · ${d.platform}</span>
-        <div class="chip-row"><span class="chip">${d.cat}</span></div>
-        <div class="stat"><b>${d.followers}</b> followers</div>
-      `;
-    } else {
-      const d = it.data;
-      card.innerHTML = `
-        <span class="brand-badge">🏷️</span>
-        <div class="avatar" style="background:${bg};color:${fg}">${initials(d.name)}</div>
-        <h4>${d.name}</h4>
-        <span class="handle">brand · ${d.cat}</span>
-        <div class="chip-row"><span class="chip">${d.cat}</span></div>
-        <div class="stat">${d.tagline}</div>
-      `;
-    }
-    grid.appendChild(card);
-  });
-}
-
-function renderTagFilter(){
-  const wrap = document.getElementById('tag-filter');
-  wrap.innerHTML = '';
-  ["All", ...CATEGORIES].forEach(cat=>{
-    const b = document.createElement('button');
-    b.textContent = cat;
-    if(cat===filterState.active) b.classList.add('active');
-    b.addEventListener('click', ()=>{
-      filterState.active = cat;
-      renderTagFilter();
-      renderShowcase();
-    });
-    wrap.appendChild(b);
-  });
-}
-renderTagFilter();
-renderShowcase();
 
 /* ================= FOOTER MARQUEE ================= */
 function fillMarquee(id){
