@@ -299,6 +299,119 @@ footer .brand-logo:hover{ color:var(--pink); }
 .connect-btn:hover{ background:var(--green); color:#fff; }
 .match-score{ position:absolute; top:18px; right:18px; font-family:var(--mono); font-size:11px; background:var(--pink); color:#fff; padding:4px 9px; border-radius:100px; font-weight:700; }
 
+/* ---------- creator dashboard ---------- */
+.dash-shell{ padding-top:36px; padding-bottom:100px; min-height:80vh; }
+.dash-header{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; margin:18px 0 40px; }
+.dash-title{ font-family:var(--disp); font-weight:800; font-size:clamp(24px,4vw,34px); letter-spacing:-0.02em; }
+.dash-subnav{ display:flex; gap:6px; background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:5px; box-shadow:0 2px 10px rgba(18,26,20,.05); flex-wrap:wrap; }
+.dash-tab{ font-size:13px; font-weight:700; padding:10px 18px; border-radius:100px; color:var(--muted); transition:.2s; }
+.dash-tab:hover{ color:var(--ink); }
+.dash-tab.active{ background:var(--ink); color:var(--cream); }
+.dash-badge{ display:inline-flex; align-items:center; justify-content:center; min-width:17px; height:17px; padding:0 4px; border-radius:100px; background:var(--pink); color:#fff; font-size:10px; font-family:var(--mono); margin-left:6px; }
+
+/* swipe deck */
+.swipe-stage{ max-width:420px; margin:0 auto; }
+.swipe-deck{ position:relative; height:520px; }
+.swipe-card{
+  position:absolute; inset:0; background:var(--paper); border:1px solid var(--line); border-radius:28px;
+  padding:28px; box-shadow:0 30px 60px -24px rgba(18,26,20,.3); display:flex; flex-direction:column;
+  transition:transform .35s ease, opacity .35s ease; user-select:none; cursor:grab;
+}
+.swipe-card:active{ cursor:grabbing; }
+.swipe-card .sc-mark{ width:64px; height:64px; border-radius:18px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; font-size:22px; color:#fff; }
+.swipe-card h3{ font-family:var(--disp); font-size:24px; margin-bottom:6px; }
+.swipe-card .sc-cat{ font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--green); margin-bottom:16px; }
+.swipe-card p.sc-tag{ color:var(--muted); font-size:15px; line-height:1.6; margin-bottom:20px; }
+.swipe-card .sc-reqs{ margin-top:auto; display:flex; flex-direction:column; gap:8px; }
+.sc-req-row{ display:flex; justify-content:space-between; gap:10px; font-size:12.5px; font-family:var(--mono); padding:9px 12px; background:var(--cream-2); border-radius:10px; }
+.sc-req-row.met{ color:var(--green); }
+.sc-req-row.unmet{ color:var(--pink-deep); }
+.swipe-card .sc-stamp{ position:absolute; top:26px; font-family:var(--disp); font-weight:800; font-size:26px; padding:6px 16px; border-radius:10px; border:3px solid; opacity:0; transition:opacity .15s; pointer-events:none; }
+.swipe-card .sc-stamp.like{ right:20px; color:var(--green); border-color:var(--green); transform:rotate(-14deg); }
+.swipe-card .sc-stamp.pass{ left:20px; color:var(--pink); border-color:var(--pink); transform:rotate(14deg); }
+.swipe-actions{ display:flex; justify-content:center; gap:20px; margin-top:22px; }
+.swipe-btn{ font-family:var(--disp); font-weight:700; font-size:15px; padding:16px 30px; border-radius:100px; border:1.5px solid var(--line); background:var(--paper); box-shadow:0 10px 24px -14px rgba(18,26,20,.3); transition:.2s; }
+.swipe-btn.pass:hover{ border-color:var(--pink); color:var(--pink); }
+.swipe-btn.like:hover{ border-color:var(--green); color:var(--green); }
+.swipe-empty{ max-width:420px; margin:60px auto 0; text-align:center; color:var(--muted); font-size:15px; }
+
+/* match toast */
+.match-toast{
+  position:fixed; top:24px; left:50%; transform:translateX(-50%) translateY(-20px); z-index:200;
+  background:var(--ink); color:var(--cream); padding:16px 26px; border-radius:16px; font-family:var(--disp); font-weight:700;
+  box-shadow:0 20px 40px -14px rgba(18,26,20,.5); opacity:0; transition:.35s;
+  display:flex; align-items:center; gap:10px; white-space:nowrap;
+}
+.match-toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+.match-toast .mt-sub{ font-family:var(--body); font-weight:400; font-size:12px; opacity:.7; }
+
+/* portfolio */
+.portfolio-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:26px; }
+.portfolio-head h3{ font-family:var(--disp); font-size:24px; }
+.btn-add-post{ font-family:var(--disp); font-weight:700; font-size:13px; padding:11px 20px; border-radius:100px; background:var(--pink); color:#fff; }
+.btn-add-post:hover{ box-shadow:0 10px 24px -10px rgba(255,46,126,.45); }
+#post-form{ background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:24px; margin-bottom:30px; }
+.portfolio-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.post-card{ background:var(--paper); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:0 10px 24px -18px rgba(18,26,20,.25); }
+.post-media{ width:100%; aspect-ratio:4/3; background:var(--cream-2); display:flex; align-items:center; justify-content:center; color:var(--muted); font-family:var(--mono); font-size:11px; overflow:hidden; }
+.post-media img, .post-media video{ width:100%; height:100%; object-fit:cover; }
+.post-body{ padding:14px 16px; }
+.post-body h4{ font-family:var(--disp); font-size:15px; margin-bottom:4px; }
+.post-body p{ font-size:12.5px; color:var(--muted); line-height:1.5; }
+.post-type-chip{ font-family:var(--mono); font-size:10px; text-transform:uppercase; color:var(--green); margin-bottom:6px; display:inline-block; }
+.portfolio-empty{ grid-column:1/-1; color:var(--muted); font-size:14px; padding:40px 0; text-align:center; }
+
+/* collabs */
+.collab-list{ display:flex; flex-direction:column; gap:12px; max-width:720px; }
+.collab-item{ display:flex; align-items:center; gap:16px; background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 18px; box-shadow:0 8px 20px -16px rgba(18,26,20,.25); flex-wrap:wrap; }
+.collab-item .ci-mark{ width:44px; height:44px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; color:#fff; }
+.collab-item .ci-body{ flex:1; min-width:140px; }
+.collab-item h4{ font-family:var(--disp); font-size:15px; }
+.collab-item p{ font-size:12.5px; color:var(--muted); }
+.ci-status{ font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; padding:5px 11px; border-radius:100px; flex-shrink:0; }
+.ci-status.pending{ background:var(--cream-2); color:var(--muted); }
+.ci-status.longshot{ background:var(--pink-pale); color:var(--pink-deep); }
+.ci-status.accepted{ background:var(--green-pale); color:var(--green); }
+.ci-status.messaged{ background:var(--pink-pale); color:var(--pink-deep); }
+.ci-chat-btn{ font-family:var(--mono); font-size:11px; font-weight:700; padding:8px 14px; border-radius:100px; background:var(--ink); color:var(--cream); flex-shrink:0; }
+.collabs-empty{ color:var(--muted); font-size:14px; padding:40px 0; text-align:center; }
+
+/* chat */
+.chat-shell{ display:grid; grid-template-columns:280px 1fr; border:1px solid var(--line); border-radius:22px; overflow:hidden; height:600px; box-shadow:0 24px 50px -30px rgba(18,26,20,.3); background:var(--paper); }
+.chat-sidebar{ border-right:1px solid var(--line); overflow-y:auto; background:var(--cream-2); }
+.chat-contact{ display:flex; align-items:center; gap:12px; padding:14px 16px; border-bottom:1px solid var(--line); cursor:pointer; transition:.15s; border-left:3px solid transparent; }
+.chat-contact:hover{ background:var(--paper); }
+.chat-contact.active{ background:var(--paper); border-left-color:var(--pink); }
+.chat-contact .cc-mark{ width:38px; height:38px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; font-size:13px; color:#fff; }
+.chat-contact .cc-body{ flex:1; min-width:0; }
+.chat-contact h5{ font-family:var(--disp); font-size:13.5px; margin-bottom:2px; }
+.chat-contact p{ font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.chat-contact .cc-dot{ width:8px; height:8px; border-radius:50%; background:var(--pink); flex-shrink:0; }
+.chat-sidebar-empty{ padding:30px 18px; color:var(--muted); font-size:13px; }
+.chat-main{ display:flex; flex-direction:column; }
+.chat-empty{ margin:auto; color:var(--muted); font-size:14px; }
+.chat-header{ display:flex; align-items:center; gap:12px; padding:16px 20px; border-bottom:1px solid var(--line); }
+.chat-header .cc-mark{ width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:var(--disp); font-weight:800; font-size:12px; color:#fff; }
+.chat-header h4{ font-family:var(--disp); font-size:15px; }
+.chat-messages{ flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:10px; }
+.msg{ max-width:70%; padding:11px 15px; border-radius:16px; font-size:13.5px; line-height:1.5; }
+.msg.brand{ align-self:flex-start; background:var(--cream-2); border-bottom-left-radius:4px; }
+.msg.me{ align-self:flex-end; background:var(--pink); color:#fff; border-bottom-right-radius:4px; }
+.chat-input-row{ display:flex; gap:10px; padding:14px 16px; border-top:1px solid var(--line); }
+.chat-input-row input{ flex:1; border:1px solid var(--line); border-radius:100px; padding:12px 18px; font-family:var(--body); font-size:13.5px; }
+.chat-input-row input:focus{ outline:none; border-color:var(--pink); }
+.chat-input-row button{ font-family:var(--disp); font-weight:700; font-size:13px; padding:12px 22px; border-radius:100px; background:var(--pink); color:#fff; }
+
+@media (max-width:760px){
+  .chat-shell{ grid-template-columns:1fr; height:auto; }
+  .chat-sidebar{ max-height:200px; }
+  .portfolio-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .portfolio-grid{ grid-template-columns:1fr; }
+  .dash-header{ flex-direction:column; align-items:flex-start; }
+}
+
 /* reveal animation */
 .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
 .reveal.show{ opacity:1; transform:none; }
@@ -578,19 +691,71 @@ footer .brand-logo:hover{ color:var(--pink); }
   </div>
 </div>
 
-<!-- ============ CREATOR MATCHES PAGE ============ -->
-<div class="page" id="page-creator-matches">
-  <div class="matches-page wrap">
-    <a class="back-link" onclick="navigate('creator-register')">← edit profile</a>
-    <div class="matches-head">
-      <span class="status">● profile live</span>
-      <h2>Brands that match your vibe</h2>
+<!-- ============ CREATOR DASHBOARD PAGE ============ -->
+<div class="page" id="page-creator-dashboard">
+  <div class="dash-shell wrap">
+    <a class="back-link" onclick="navigate('home')">← back to home</a>
+    <div class="dash-header">
+      <div class="dash-title">Hey, <span id="dash-creator-name">Creator</span> ✦</div>
+      <div class="dash-subnav">
+        <button class="dash-tab active" data-view="brands" onclick="switchDashView('brands')">Brands</button>
+        <button class="dash-tab" data-view="portfolio" onclick="switchDashView('portfolio')">Portfolio</button>
+        <button class="dash-tab" data-view="collabs" onclick="switchDashView('collabs')">Collabs <span class="dash-badge" id="collab-badge" style="display:none;"></span></button>
+        <button class="dash-tab" data-view="chat" onclick="switchDashView('chat')">Chat <span class="dash-badge" id="chat-badge" style="display:none;"></span></button>
+      </div>
     </div>
-    <div class="top-match-wrap">
-      <div class="top-match-label"><span class="sparkle">✦</span> your top match, spotlighted</div>
-      <div class="match-stage" id="creator-top-match"></div>
+
+    <!-- BRANDS / SWIPE VIEW -->
+    <div class="dash-view" id="dash-view-brands">
+      <div class="swipe-stage">
+        <div class="swipe-deck" id="swipe-deck"></div>
+        <div class="swipe-actions" id="swipe-actions-row">
+          <button class="swipe-btn pass" onclick="swipeAction('pass')">✕ Pass</button>
+          <button class="swipe-btn like" onclick="swipeAction('like')">✦ Collab</button>
+        </div>
+        <div class="swipe-empty" id="swipe-empty" style="display:none;">You've swiped through every brand for now — check back soon for more briefs.</div>
+      </div>
     </div>
-    <div class="matches-grid" id="creator-matches-grid"></div>
+
+    <!-- PORTFOLIO VIEW -->
+    <div class="dash-view" id="dash-view-portfolio" style="display:none;">
+      <div class="portfolio-head">
+        <h3>Your work</h3>
+        <button class="btn-add-post" onclick="togglePostForm()">+ Add post</button>
+      </div>
+      <form id="post-form" style="display:none;">
+        <div class="field-row">
+          <div class="field"><label>Title</label><input type="text" id="post-title" required placeholder="Behind the scenes reel"></div>
+          <div class="field"><label>Type</label>
+            <select id="post-type">
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Media URL</label><input type="text" id="post-url" placeholder="https://... (leave blank for placeholder)"></div>
+        <div class="field"><label>Description</label><textarea id="post-desc" rows="2" placeholder="What's this piece about?"></textarea></div>
+        <button type="submit" class="submit-btn pink">Post it →</button>
+      </form>
+      <div class="portfolio-grid" id="portfolio-grid"></div>
+    </div>
+
+    <!-- COLLABS VIEW -->
+    <div class="dash-view" id="dash-view-collabs" style="display:none;">
+      <h3 style="font-family:var(--disp);font-size:24px;margin-bottom:24px;">Collab requests</h3>
+      <div class="collab-list" id="collab-list"></div>
+    </div>
+
+    <!-- CHAT VIEW -->
+    <div class="dash-view" id="dash-view-chat" style="display:none;">
+      <div class="chat-shell">
+        <div class="chat-sidebar" id="chat-sidebar"></div>
+        <div class="chat-main" id="chat-main">
+          <div class="chat-empty">Select a conversation to start chatting</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -614,33 +779,98 @@ footer .brand-logo:hover{ color:var(--pink); }
             </select>
           </div>
           <div class="field"><label>Campaign budget</label>
-            <select required>
+            <select id="brand-budget" required>
               <option value="">Select range</option>
               <option>Under ₹50K</option><option>₹50K – ₹2L</option><option>₹2L – ₹10L</option><option>₹10L+</option>
             </select>
           </div>
         </div>
-        <div class="field"><label>Website</label><input type="text" placeholder="www.yourbrand.com"></div>
-        <div class="field"><label>What are you looking for?</label><textarea rows="3" placeholder="Product seeding, long-term ambassador, one-off campaign..."></textarea></div>
+        <div class="field"><label>Website</label><input type="text" id="brand-website" placeholder="www.yourbrand.com"></div>
+        <div class="field"><label>What are you looking for?</label><textarea id="brand-looking" rows="3" placeholder="Product seeding, long-term ambassador, one-off campaign..."></textarea></div>
         <button type="submit" class="submit-btn">Find my creators →</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- ============ BRAND MATCHES PAGE ============ -->
-<div class="page" id="page-brand-matches">
-  <div class="matches-page wrap">
-    <a class="back-link" onclick="navigate('brand-register')">← edit brief</a>
-    <div class="matches-head">
-      <span class="status">● brief live</span>
-      <h2 id="brand-matches-heading">Creators that match your category</h2>
+<!-- ============ BRAND DASHBOARD PAGE ============ -->
+<div class="page" id="page-brand-dashboard">
+  <div class="dash-shell wrap">
+    <a class="back-link" onclick="navigate('home')">← back to home</a>
+    <div class="dash-header">
+      <div class="dash-title">Hey, <span id="dash-brand-name">Brand</span> ✦</div>
+      <div class="dash-subnav">
+        <button class="dash-tab active" data-view="creators" onclick="switchBrandDashView('creators')">Creators</button>
+        <button class="dash-tab" data-view="post" onclick="switchBrandDashView('post')">Post</button>
+        <button class="dash-tab" data-view="collabs" onclick="switchBrandDashView('collabs')">Collabs <span class="dash-badge" id="brand-collab-badge" style="display:none;"></span></button>
+        <button class="dash-tab" data-view="chat" onclick="switchBrandDashView('chat')">Chat <span class="dash-badge" id="brand-chat-badge" style="display:none;"></span></button>
+      </div>
     </div>
-    <div class="top-match-wrap">
-      <div class="top-match-label"><span class="sparkle g">✦</span> your top match, spotlighted</div>
-      <div class="match-stage" id="brand-top-match"></div>
+
+    <!-- CREATORS VIEW: recommended grid header + swipe matchmaking below -->
+    <div class="dash-view" id="brand-dash-view-creators">
+      <div class="top-match-wrap" style="margin-bottom:44px;">
+        <div class="top-match-label"><span class="sparkle g">✦</span> your top match, spotlighted</div>
+        <div class="match-stage" id="brand-top-match"></div>
+      </div>
+
+      <div class="portfolio-head">
+        <h3>Creators available for collab</h3>
+      </div>
+      <div class="card-row" id="brand-creators-grid" style="margin-bottom:56px;"></div>
+
+      <div class="portfolio-head">
+        <h3>Or swipe to match faster</h3>
+      </div>
+      <div class="swipe-stage">
+        <div class="swipe-deck" id="brand-swipe-deck"></div>
+        <div class="swipe-actions" id="brand-swipe-actions-row">
+          <button class="swipe-btn pass" onclick="brandSwipeAction('pass')">✕ Pass</button>
+          <button class="swipe-btn like" onclick="brandSwipeAction('like')">✦ Collab</button>
+        </div>
+        <div class="swipe-empty" id="brand-swipe-empty" style="display:none;">You've swiped through every creator for now — check back soon for more talent.</div>
+      </div>
     </div>
-    <div class="matches-grid" id="brand-matches-grid"></div>
+
+    <!-- POST VIEW -->
+    <div class="dash-view" id="brand-dash-view-post" style="display:none;">
+      <div class="portfolio-head">
+        <h3>Post about your business</h3>
+        <button class="btn-add-post" onclick="toggleBrandPostForm()">+ New post</button>
+      </div>
+      <form id="brand-post-form" style="display:none;">
+        <div class="field-row">
+          <div class="field"><label>Title</label><input type="text" id="brand-post-title" required placeholder="Our new summer drop"></div>
+          <div class="field"><label>Type</label>
+            <select id="brand-post-type">
+              <option value="image">Image</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Media URL</label><input type="text" id="brand-post-url" placeholder="https://... (leave blank for placeholder)"></div>
+        <div class="field"><label>Description</label><textarea id="brand-post-desc" rows="2" placeholder="What's this about?"></textarea></div>
+        <button type="submit" class="submit-btn">Post it →</button>
+      </form>
+      <div class="portfolio-grid" id="brand-posts-grid"></div>
+    </div>
+
+    <!-- COLLABS VIEW (notifications: accepted requests / creator messages) -->
+    <div class="dash-view" id="brand-dash-view-collabs" style="display:none;">
+      <h3 style="font-family:var(--disp);font-size:24px;margin-bottom:24px;">Collab requests &amp; notifications</h3>
+      <div class="collab-list" id="brand-collab-list"></div>
+    </div>
+
+    <!-- CHAT VIEW -->
+    <div class="dash-view" id="brand-dash-view-chat" style="display:none;">
+      <div class="chat-shell">
+        <div class="chat-sidebar" id="brand-chat-sidebar"></div>
+        <div class="chat-main" id="brand-chat-main">
+          <div class="chat-empty">Select a conversation to start chatting</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -711,7 +941,7 @@ fillCategorySelect('creator-category');
 fillCategorySelect('brand-category');
 
 function initials(name){ return name.split(' ').map(w=>w[0]).slice(0,2).join(''); }
-function paletteFor(seed){ return PALETTE[seed % PALETTE.length]; }
+function paletteFor(seed){ return PALETTE[((seed%PALETTE.length)+PALETTE.length)%PALETTE.length]; }
 
 /* ================= FOOTER MARQUEE ================= */
 function fillMarquee(id){
@@ -727,7 +957,7 @@ function fillMarquee(id){
 fillMarquee('marquee-1');
 fillMarquee('marquee-2');
 
-/* ================= TOP MATCH SPOTLIGHT (highlight component) ================= */
+/* ================= TOP MATCH SPOTLIGHT (brand-side highlight component) ================= */
 function renderTopMatch(containerId, selfCard, otherCard, score){
   const el = document.getElementById(containerId);
   el.innerHTML = `
@@ -750,84 +980,782 @@ function renderTopMatch(containerId, selfCard, otherCard, score){
   `;
 }
 
-/* ================= FORMS ================= */
-document.getElementById('creator-form').addEventListener('submit', function(e){
-  e.preventDefault();
-  const cat = document.getElementById('creator-category').value;
-  const nameInput = e.target.querySelector('input[type="text"]').value || "You";
-  renderMatchesForCreator(cat, nameInput);
-  navigate('creator-matches');
-});
+/* ================= BRAND FORM ================= */
+function parseFollowers(str){
+  if(!str) return 0;
+  const m = String(str).match(/([\d.]+)\s*K/i);
+  if(m) return Math.round(parseFloat(m[1])*1000);
+  const n = parseFloat(str);
+  return isNaN(n) ? 0 : n;
+}
+const BUDGET_FOLLOWER_MIN = {
+  "Under ₹50K": 0,
+  "₹50K – ₹2L": 50000,
+  "₹2L – ₹10L": 150000,
+  "₹10L+": 300000
+};
 
 document.getElementById('brand-form').addEventListener('submit', function(e){
   e.preventDefault();
-  const cat = document.getElementById('brand-category').value;
-  const nameInput = e.target.querySelector('input[type="text"]').value || "Your brand";
-  renderMatchesForBrand(cat, nameInput);
-  navigate('brand-matches');
+  brandProfile = {
+    name: e.target.querySelector('input[type="text"]').value || "Your brand",
+    email: e.target.querySelector('input[type="email"]').value,
+    category: document.getElementById('brand-category').value,
+    budget: document.getElementById('brand-budget').value,
+    website: document.getElementById('brand-website').value,
+    looking: document.getElementById('brand-looking').value
+  };
+  initBrandDashboard();
+  navigate('brand-dashboard');
 });
 
-function renderMatchesForCreator(cat, creatorName){
-  const grid = document.getElementById('creator-matches-grid');
-  grid.innerHTML = '';
-  let list = BRANDS.filter(b=>b.cat===cat);
-  if(list.length===0) list = BRANDS.slice(0,6);
+/* ================= CREATOR DASHBOARD STATE ================= */
+let creatorProfile = null;
+let swipeDeck = [];
+let swipeIndex = 0;
+let collabRequests = []; // {brand, status, id}
+let portfolioPosts = [];
+let chatThreads = {}; // brandName -> {messages:[{from,text}], unread:bool}
+let activeChatBrand = null;
 
-  const top = list[0];
-  const topScore = 92 + Math.floor(Math.random()*7);
-  renderTopMatch('creator-top-match',
-    {shape:'round', title:creatorName, sub: (cat||'Creator') + ' · your profile', tag:'open to collabs'},
-    {shape:'square', title:top.name, sub:top.tagline, tag:top.budget},
-    topScore
-  );
+const FOLLOWER_MIN = {
+  "1K – 10K": 1000, "10K – 50K": 10000, "50K – 200K": 50000, "200K+": 200000
+};
+const BRAND_REQS = {
+  "Nova Threads": 20000, "PulseFit": 10000, "ByteBrew": 5000, "Wander&Co": 30000,
+  "SonicWave": 15000, "GlowLab": 50000, "PixelForge": 10000, "CircuitOne": 40000
+};
 
-  list.forEach((b,i)=>{
-    const [bg,fg] = paletteFor(i);
-    const score = 78 + Math.floor(Math.random()*17);
+document.getElementById('creator-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const inputs = e.target.querySelectorAll('input');
+  const selects = e.target.querySelectorAll('select');
+  creatorProfile = {
+    name: inputs[0].value || "Creator",
+    email: inputs[1].value,
+    platform: selects[0].value,
+    handle: inputs[2].value || "@you",
+    category: selects[1].value,
+    followers: selects[2].value,
+    bio: e.target.querySelector('textarea').value
+  };
+  initDashboard();
+  navigate('creator-dashboard');
+});
+
+function initDashboard(){
+  document.getElementById('dash-creator-name').textContent = creatorProfile.name.split(' ')[0];
+  const sameCat = BRANDS.filter(b=>b.cat===creatorProfile.category);
+  const rest = BRANDS.filter(b=>b.cat!==creatorProfile.category);
+  swipeDeck = [...sameCat, ...rest];
+  swipeIndex = 0;
+  collabRequests = [];
+  portfolioPosts = [];
+  chatThreads = {};
+  activeChatBrand = null;
+  renderSwipeDeck();
+  renderPortfolio();
+  renderCollabs();
+  renderChatSidebar();
+  document.getElementById('chat-main').innerHTML = '<div class="chat-empty">Select a conversation to start chatting</div>';
+  updateBadges();
+  switchDashView('brands');
+}
+
+function switchDashView(view){
+  document.querySelectorAll('#page-creator-dashboard .dash-tab').forEach(t=>t.classList.toggle('active', t.dataset.view===view));
+  document.querySelectorAll('#page-creator-dashboard .dash-view').forEach(v=>v.style.display='none');
+  document.getElementById('dash-view-'+view).style.display='';
+}
+
+/* ---- SWIPE DECK ---- */
+function renderSwipeDeck(){
+  const deckEl = document.getElementById('swipe-deck');
+  deckEl.innerHTML = '';
+  const remaining = swipeDeck.slice(swipeIndex, swipeIndex+3);
+  const actionsRow = document.getElementById('swipe-actions-row');
+  if(remaining.length===0){
+    document.getElementById('swipe-empty').style.display='';
+    actionsRow.style.display='none';
+    return;
+  }
+  document.getElementById('swipe-empty').style.display='none';
+  actionsRow.style.display='';
+  const myFollowers = FOLLOWER_MIN[creatorProfile.followers] || 0;
+  remaining.slice().reverse().forEach((b, ridx)=>{
+    const i = remaining.length-1-ridx; // 0 = top card
+    const [bg] = paletteFor(BRANDS.findIndex(x=>x.name===b.name));
+    const req = BRAND_REQS[b.name] || 0;
+    const catMet = b.cat === creatorProfile.category;
+    const followerMet = myFollowers >= req;
     const card = document.createElement('div');
-    card.className = 'profile-card';
+    card.className = 'swipe-card';
+    card.style.zIndex = String(10+i);
+    card.style.transform = i===0 ? 'none' : `translateY(${i*10}px) scale(${1-i*0.04})`;
+    card.style.opacity = i>2 ? '0' : '1';
     card.innerHTML = `
-      <span class="match-score">${score}% match</span>
-      <div class="avatar" style="background:${bg};color:${fg}">${initials(b.name)}</div>
-      <h4>${b.name}</h4>
-      <span class="handle">brand · ${b.cat}</span>
-      <div class="chip-row"><span class="chip">${b.budget}</span></div>
-      <div class="stat">${b.tagline}</div>
-      <button class="connect-btn">Send collab request</button>
+      <div class="sc-stamp like">COLLAB</div>
+      <div class="sc-stamp pass">PASS</div>
+      <div class="sc-mark" style="background:${bg}">${initials(b.name)}</div>
+      <h3>${b.name}</h3>
+      <div class="sc-cat">${b.cat} · ${b.budget}</div>
+      <p class="sc-tag">${b.tagline}</p>
+      <div class="sc-reqs">
+        <div class="sc-req-row ${catMet?'met':'unmet'}"><span>Category fit</span><span>${catMet? 'matches your niche':'different niche'}</span></div>
+        <div class="sc-req-row ${followerMet?'met':'unmet'}"><span>Follower requirement</span><span>${followerMet? 'you qualify':'below their bar'}</span></div>
+      </div>
+    `;
+    deckEl.appendChild(card);
+  });
+  attachDrag();
+}
+
+let _dragMove=null, _dragUp=null;
+function attachDrag(){
+  const deckEl = document.getElementById('swipe-deck');
+  const top = deckEl.lastElementChild;
+  if(!top) return;
+  if(_dragMove) window.removeEventListener('mousemove', _dragMove);
+  if(_dragUp){ window.removeEventListener('mouseup', _dragUp); }
+  let startX=0, curX=0, dragging=false;
+  const likeStamp = top.querySelector('.sc-stamp.like');
+  const passStamp = top.querySelector('.sc-stamp.pass');
+  function down(x){ dragging=true; startX=x; top.style.transition='none'; }
+  function move(x){
+    if(!dragging) return;
+    curX = x-startX;
+    top.style.transform = `translateX(${curX}px) rotate(${curX/18}deg)`;
+    likeStamp.style.opacity = curX>30 ? String(Math.min(1,curX/100)) : '0';
+    passStamp.style.opacity = curX<-30 ? String(Math.min(1,-curX/100)) : '0';
+  }
+  function up(){
+    if(!dragging) return;
+    dragging=false;
+    top.style.transition='';
+    if(curX>110) swipeAction('like');
+    else if(curX<-110) swipeAction('pass');
+    else { top.style.transform='none'; likeStamp.style.opacity='0'; passStamp.style.opacity='0'; }
+    curX=0;
+  }
+  _dragMove = (e)=>move(e.clientX);
+  _dragUp = ()=>up();
+  top.addEventListener('mousedown', e=>down(e.clientX));
+  window.addEventListener('mousemove', _dragMove);
+  window.addEventListener('mouseup', _dragUp);
+  top.addEventListener('touchstart', e=>down(e.touches[0].clientX), {passive:true});
+  top.addEventListener('touchmove', e=>move(e.touches[0].clientX), {passive:true});
+  top.addEventListener('touchend', up);
+}
+
+function swipeAction(dir){
+  const deckEl = document.getElementById('swipe-deck');
+  const top = deckEl.lastElementChild;
+  if(!top || swipeIndex>=swipeDeck.length) return;
+  const brand = swipeDeck[swipeIndex];
+  top.style.transition = 'transform .4s ease, opacity .4s ease';
+  top.style.transform = dir==='like' ? 'translateX(600px) rotate(24deg)' : 'translateX(-600px) rotate(-24deg)';
+  top.style.opacity = '0';
+  if(dir==='like') handleLike(brand);
+  swipeIndex++;
+  setTimeout(renderSwipeDeck, 320);
+}
+
+function handleLike(brand){
+  const req = BRAND_REQS[brand.name] || 0;
+  const myFollowers = FOLLOWER_MIN[creatorProfile.followers] || 0;
+  const catMet = brand.cat === creatorProfile.category;
+  const followerMet = myFollowers >= req;
+  const isMatch = catMet && followerMet;
+  const status = isMatch ? 'pending' : 'longshot';
+  collabRequests.push({brand, status, id: brand.name});
+  if(isMatch){
+    showMatchToast(brand.name);
+    const delay = 3000 + Math.random()*4000;
+    setTimeout(()=>progressCollab(brand.name), delay);
+  }
+  renderCollabs();
+  updateBadges();
+}
+
+function progressCollab(brandName){
+  const c = collabRequests.find(c=>c.id===brandName);
+  if(!c) return;
+  const roll = Math.random();
+  c.status = roll<0.5 ? 'accepted' : 'messaged';
+  if(!chatThreads[brandName]) chatThreads[brandName] = {messages:[], unread:true};
+  if(c.status==='messaged'){
+    chatThreads[brandName].messages.push({from:'brand', text: brandOpener()});
+  } else {
+    chatThreads[brandName].messages.push({from:'brand', text:"We accepted your collab request! Let's chat about details."});
+  }
+  chatThreads[brandName].unread = true;
+  renderCollabs();
+  renderChatSidebar();
+  if(activeChatBrand===brandName) renderChatMain();
+  updateBadges();
+}
+
+function brandOpener(){
+  const options = [
+    "Hey! Loved your profile, when are you free to talk details?",
+    "Hi there — we'd love to send over some product for a first collab, interested?",
+    "Thanks for reaching out! What's your usual turnaround for a sponsored post?"
+  ];
+  return options[Math.floor(Math.random()*options.length)];
+}
+
+function showMatchToast(brandName){
+  let toast = document.getElementById('match-toast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.className = 'match-toast';
+    toast.id = 'match-toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `✦ It's a match with ${brandName}! <span class="mt-sub">check your Collabs tab</span>`;
+  requestAnimationFrame(()=>toast.classList.add('show'));
+  setTimeout(()=>toast.classList.remove('show'), 2600);
+}
+
+function updateBadges(){
+  const collabBadge = document.getElementById('collab-badge');
+  const newCount = collabRequests.filter(c=>c.status==='accepted'||c.status==='messaged').length;
+  if(newCount>0){ collabBadge.style.display=''; collabBadge.textContent = String(newCount); } else collabBadge.style.display='none';
+  const chatBadge = document.getElementById('chat-badge');
+  const unread = Object.values(chatThreads).filter(t=>t.unread).length;
+  if(unread>0){ chatBadge.style.display=''; chatBadge.textContent = String(unread); } else chatBadge.style.display='none';
+}
+
+/* ---- COLLABS ---- */
+function renderCollabs(){
+  const list = document.getElementById('collab-list');
+  list.innerHTML='';
+  if(collabRequests.length===0){
+    list.innerHTML = '<div class="collabs-empty">No collab requests yet — swipe right (or hit Collab) on a brand you like!</div>';
+    return;
+  }
+  collabRequests.slice().reverse().forEach(c=>{
+    const [bg] = paletteFor(BRANDS.findIndex(x=>x.name===c.brand.name));
+    const statusLabel = {pending:'Pending', longshot:'Long shot', accepted:'Accepted', messaged:'New message'}[c.status];
+    const item = document.createElement('div');
+    item.className = 'collab-item';
+    item.innerHTML = `
+      <div class="ci-mark" style="background:${bg}">${initials(c.brand.name)}</div>
+      <div class="ci-body"><h4>${c.brand.name}</h4><p>${c.brand.tagline}</p></div>
+      <span class="ci-status ${c.status}">${statusLabel}</span>
+      ${(c.status==='accepted'||c.status==='messaged') ? `<button class="ci-chat-btn" data-brand="${c.brand.name}">Chat</button>` : ''}
+    `;
+    const btn = item.querySelector('.ci-chat-btn');
+    if(btn) btn.addEventListener('click', ()=>openChatFor(c.brand.name));
+    list.appendChild(item);
+  });
+}
+
+function openChatFor(brandName){
+  switchDashView('chat');
+  activeChatBrand = brandName;
+  if(chatThreads[brandName]) chatThreads[brandName].unread=false;
+  renderChatSidebar();
+  renderChatMain();
+  updateBadges();
+}
+
+/* ---- CHAT ---- */
+function renderChatSidebar(){
+  const sidebar = document.getElementById('chat-sidebar');
+  sidebar.innerHTML='';
+  const names = Object.keys(chatThreads);
+  if(names.length===0){
+    sidebar.innerHTML = '<div class="chat-sidebar-empty">Match with a brand and get a reply to start chatting.</div>';
+    return;
+  }
+  names.forEach(name=>{
+    const brand = BRANDS.find(b=>b.name===name);
+    const [bg] = paletteFor(BRANDS.findIndex(x=>x.name===name));
+    const thread = chatThreads[name];
+    const last = thread.messages[thread.messages.length-1];
+    const contact = document.createElement('div');
+    contact.className = 'chat-contact' + (activeChatBrand===name ? ' active':'');
+    contact.innerHTML = `
+      <div class="cc-mark" style="background:${bg}">${initials(name)}</div>
+      <div class="cc-body"><h5>${name}</h5><p>${last ? (last.from==='me'?'You: ':'') + last.text : 'Say hi!'}</p></div>
+      ${thread.unread ? '<div class="cc-dot"></div>' : ''}
+    `;
+    contact.addEventListener('click', ()=>openChatFor(name));
+    sidebar.appendChild(contact);
+  });
+}
+
+function renderChatMain(){
+  const main = document.getElementById('chat-main');
+  if(!activeChatBrand || !chatThreads[activeChatBrand]){
+    main.innerHTML = '<div class="chat-empty">Select a conversation to start chatting</div>';
+    return;
+  }
+  const [bg] = paletteFor(BRANDS.findIndex(x=>x.name===activeChatBrand));
+  const thread = chatThreads[activeChatBrand];
+  main.innerHTML = `
+    <div class="chat-header"><div class="cc-mark" style="background:${bg}">${initials(activeChatBrand)}</div><h4>${activeChatBrand}</h4></div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Message ${activeChatBrand}...">
+      <button id="chat-send-btn">Send</button>
+    </div>
+  `;
+  const msgsEl = document.getElementById('chat-messages');
+  thread.messages.forEach(m=>{
+    const div = document.createElement('div');
+    div.className = 'msg ' + (m.from==='me'?'me':'brand');
+    div.textContent = m.text;
+    msgsEl.appendChild(div);
+  });
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+  document.getElementById('chat-send-btn').addEventListener('click', sendChatMessage);
+  document.getElementById('chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') sendChatMessage(); });
+}
+
+function sendChatMessage(){
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if(!text || !activeChatBrand) return;
+  chatThreads[activeChatBrand].messages.push({from:'me', text});
+  input.value='';
+  renderChatMain();
+  renderChatSidebar();
+  const brandName = activeChatBrand;
+  setTimeout(()=>{
+    const replies = [
+      "Sounds good, let's move forward!",
+      "Got it — I'll follow up with our team.",
+      "Perfect, sending over the contract shortly.",
+      "Love that idea, let's do it."
+    ];
+    if(!chatThreads[brandName]) return;
+    chatThreads[brandName].messages.push({from:'brand', text: replies[Math.floor(Math.random()*replies.length)]});
+    chatThreads[brandName].unread = activeChatBrand!==brandName;
+    if(activeChatBrand===brandName) renderChatMain();
+    renderChatSidebar();
+    updateBadges();
+  }, 1400+Math.random()*1200);
+}
+
+/* ---- PORTFOLIO ---- */
+function togglePostForm(){
+  const form = document.getElementById('post-form');
+  form.style.display = form.style.display==='none' ? '' : 'none';
+}
+
+document.getElementById('post-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const title = document.getElementById('post-title').value || 'Untitled';
+  const type = document.getElementById('post-type').value;
+  const url = document.getElementById('post-url').value;
+  const desc = document.getElementById('post-desc').value;
+  portfolioPosts.unshift({title,type,url,desc});
+  this.reset();
+  document.getElementById('post-form').style.display='none';
+  renderPortfolio();
+});
+
+function renderPortfolio(){
+  const grid = document.getElementById('portfolio-grid');
+  grid.innerHTML='';
+  if(portfolioPosts.length===0){
+    grid.innerHTML = '<div class="portfolio-empty">No posts yet — add your first piece of work above.</div>';
+    return;
+  }
+  portfolioPosts.forEach(p=>{
+    const card = document.createElement('div');
+    card.className='post-card';
+    let mediaHtml = 'preview unavailable';
+    if(p.url && p.type==='image') mediaHtml = `<img src="${p.url}" alt="${p.title}">`;
+    else if(p.url && p.type==='video') mediaHtml = `<video src="${p.url}" controls></video>`;
+    card.innerHTML = `
+      <div class="post-media">${mediaHtml}</div>
+      <div class="post-body">
+        <span class="post-type-chip">${p.type}</span>
+        <h4>${p.title}</h4>
+        <p>${p.desc||''}</p>
+      </div>
     `;
     grid.appendChild(card);
   });
 }
 
-function renderMatchesForBrand(cat, brandName){
-  document.getElementById('brand-matches-heading').textContent =
-    cat ? `Creators that match ${cat}` : "Creators that match your category";
-  const grid = document.getElementById('brand-matches-grid');
-  grid.innerHTML = '';
-  let list = INFLUENCERS.filter(inf=>inf.cat===cat);
+/* ================= BRAND DASHBOARD STATE ================= */
+let brandProfile = null;
+let brandSwipeDeck = [];
+let brandSwipeIndex = 0;
+let brandCollabRequests = []; // {creator, status, id}
+let brandPosts = [];
+let brandChatThreads = {}; // creatorName -> {messages:[{from,text}], unread:bool}
+let activeBrandChatCreator = null;
+
+function initBrandDashboard(){
+  document.getElementById('dash-brand-name').textContent = brandProfile.name;
+  const sameCat = INFLUENCERS.filter(c=>c.cat===brandProfile.category);
+  const rest = INFLUENCERS.filter(c=>c.cat!==brandProfile.category);
+  brandSwipeDeck = [...sameCat, ...rest];
+  brandSwipeIndex = 0;
+  brandCollabRequests = [];
+  brandPosts = [];
+  brandChatThreads = {};
+  activeBrandChatCreator = null;
+  renderBrandTopMatch();
+  renderCreatorsGrid();
+  renderCreatorSwipeDeck();
+  renderBrandPosts();
+  renderBrandCollabs();
+  renderBrandChatSidebar();
+  document.getElementById('brand-chat-main').innerHTML = '<div class="chat-empty">Select a conversation to start chatting</div>';
+  updateBrandBadges();
+  switchBrandDashView('creators');
+}
+
+function switchBrandDashView(view){
+  document.querySelectorAll('#page-brand-dashboard .dash-tab').forEach(t=>t.classList.toggle('active', t.dataset.view===view));
+  document.querySelectorAll('#page-brand-dashboard .dash-view').forEach(v=>v.style.display='none');
+  document.getElementById('brand-dash-view-'+view).style.display='';
+}
+
+/* ---- TOP MATCH SPOTLIGHT ---- */
+function renderBrandTopMatch(){
+  let list = INFLUENCERS.filter(c=>c.cat===brandProfile.category);
   if(list.length===0) list = INFLUENCERS.slice(0,6);
-
   const top = list[0];
-  const topScore = 91 + Math.floor(Math.random()*8);
+  const score = 91 + Math.floor(Math.random()*8);
   renderTopMatch('brand-top-match',
-    {shape:'square', title:brandName, sub:(cat||'Brand') + ' · your brief', tag:'live now'},
+    {shape:'square', title:brandProfile.name, sub:(brandProfile.category||'Brand') + ' · your brief', tag:'live now'},
     {shape:'round', title:top.name, sub:top.handle + ' · ' + top.platform, tag:top.followers + ' followers'},
-    topScore
+    score
   );
+}
 
+/* ---- CREATORS GRID (recommended, available for collab) ---- */
+function renderCreatorsGrid(){
+  const grid = document.getElementById('brand-creators-grid');
+  grid.innerHTML = '';
+  let list = INFLUENCERS.filter(c=>c.cat===brandProfile.category);
+  if(list.length===0) list = INFLUENCERS.slice(0,6);
   list.forEach((inf,i)=>{
-    const [bg,fg] = paletteFor(i);
-    const score = 76 + Math.floor(Math.random()*19);
+    const [bg,fg] = paletteFor(INFLUENCERS.findIndex(x=>x.name===inf.name));
+    const already = brandCollabRequests.find(c=>c.id===inf.name);
     const card = document.createElement('div');
     card.className = 'profile-card';
     card.innerHTML = `
-      <span class="match-score">${score}% match</span>
       <div class="avatar" style="background:${bg};color:${fg}">${initials(inf.name)}</div>
       <h4>${inf.name}</h4>
       <span class="handle">${inf.handle} · ${inf.platform}</span>
       <div class="chip-row"><span class="chip">${inf.cat}</span><span class="chip">${inf.followers}</span></div>
       <div class="stat">${inf.bio}</div>
-      <button class="connect-btn">Send collab request</button>
+      <button class="connect-btn" ${already?'disabled':''}>${already?'Requested':'Send collab request'}</button>
+    `;
+    const btn = card.querySelector('.connect-btn');
+    btn.addEventListener('click', ()=>{
+      if(brandCollabRequests.find(c=>c.id===inf.name)) return;
+      handleBrandLike(inf);
+      btn.textContent = 'Requested';
+      btn.disabled = true;
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ---- SWIPE MATCHMAKING (brand swipes on creators) ---- */
+function renderCreatorSwipeDeck(){
+  const deckEl = document.getElementById('brand-swipe-deck');
+  deckEl.innerHTML = '';
+  const remaining = brandSwipeDeck.slice(brandSwipeIndex, brandSwipeIndex+3);
+  const actionsRow = document.getElementById('brand-swipe-actions-row');
+  if(remaining.length===0){
+    document.getElementById('brand-swipe-empty').style.display='';
+    actionsRow.style.display='none';
+    return;
+  }
+  document.getElementById('brand-swipe-empty').style.display='none';
+  actionsRow.style.display='';
+  const minFollowers = BUDGET_FOLLOWER_MIN[brandProfile.budget] || 0;
+  remaining.slice().reverse().forEach((inf, ridx)=>{
+    const i = remaining.length-1-ridx; // 0 = top card
+    const [bg] = paletteFor(INFLUENCERS.findIndex(x=>x.name===inf.name));
+    const catMet = inf.cat === brandProfile.category;
+    const followerMet = parseFollowers(inf.followers) >= minFollowers;
+    const card = document.createElement('div');
+    card.className = 'swipe-card';
+    card.style.zIndex = String(10+i);
+    card.style.transform = i===0 ? 'none' : `translateY(${i*10}px) scale(${1-i*0.04})`;
+    card.style.opacity = i>2 ? '0' : '1';
+    card.innerHTML = `
+      <div class="sc-stamp like">COLLAB</div>
+      <div class="sc-stamp pass">PASS</div>
+      <div class="sc-mark" style="background:${bg}">${initials(inf.name)}</div>
+      <h3>${inf.name}</h3>
+      <div class="sc-cat">${inf.cat} · ${inf.followers} followers</div>
+      <p class="sc-tag">${inf.bio}</p>
+      <div class="sc-reqs">
+        <div class="sc-req-row ${catMet?'met':'unmet'}"><span>Category fit</span><span>${catMet? 'matches your brief':'different niche'}</span></div>
+        <div class="sc-req-row ${followerMet?'met':'unmet'}"><span>Reach for your budget</span><span>${followerMet? 'meets your bar':'below your bar'}</span></div>
+      </div>
+    `;
+    deckEl.appendChild(card);
+  });
+  attachBrandDrag();
+}
+
+let _brandDragMove=null, _brandDragUp=null;
+function attachBrandDrag(){
+  const deckEl = document.getElementById('brand-swipe-deck');
+  const top = deckEl.lastElementChild;
+  if(!top) return;
+  if(_brandDragMove) window.removeEventListener('mousemove', _brandDragMove);
+  if(_brandDragUp){ window.removeEventListener('mouseup', _brandDragUp); }
+  let startX=0, curX=0, dragging=false;
+  const likeStamp = top.querySelector('.sc-stamp.like');
+  const passStamp = top.querySelector('.sc-stamp.pass');
+  function down(x){ dragging=true; startX=x; top.style.transition='none'; }
+  function move(x){
+    if(!dragging) return;
+    curX = x-startX;
+    top.style.transform = `translateX(${curX}px) rotate(${curX/18}deg)`;
+    likeStamp.style.opacity = curX>30 ? String(Math.min(1,curX/100)) : '0';
+    passStamp.style.opacity = curX<-30 ? String(Math.min(1,-curX/100)) : '0';
+  }
+  function up(){
+    if(!dragging) return;
+    dragging=false;
+    top.style.transition='';
+    if(curX>110) brandSwipeAction('like');
+    else if(curX<-110) brandSwipeAction('pass');
+    else { top.style.transform='none'; likeStamp.style.opacity='0'; passStamp.style.opacity='0'; }
+    curX=0;
+  }
+  _brandDragMove = (e)=>move(e.clientX);
+  _brandDragUp = ()=>up();
+  top.addEventListener('mousedown', e=>down(e.clientX));
+  window.addEventListener('mousemove', _brandDragMove);
+  window.addEventListener('mouseup', _brandDragUp);
+  top.addEventListener('touchstart', e=>down(e.touches[0].clientX), {passive:true});
+  top.addEventListener('touchmove', e=>move(e.touches[0].clientX), {passive:true});
+  top.addEventListener('touchend', up);
+}
+
+function brandSwipeAction(dir){
+  const deckEl = document.getElementById('brand-swipe-deck');
+  const top = deckEl.lastElementChild;
+  if(!top || brandSwipeIndex>=brandSwipeDeck.length) return;
+  const creator = brandSwipeDeck[brandSwipeIndex];
+  top.style.transition = 'transform .4s ease, opacity .4s ease';
+  top.style.transform = dir==='like' ? 'translateX(600px) rotate(24deg)' : 'translateX(-600px) rotate(-24deg)';
+  top.style.opacity = '0';
+  if(dir==='like') handleBrandLike(creator);
+  brandSwipeIndex++;
+  setTimeout(renderCreatorSwipeDeck, 320);
+}
+
+function handleBrandLike(creator){
+  if(brandCollabRequests.find(c=>c.id===creator.name)) return;
+  const minFollowers = BUDGET_FOLLOWER_MIN[brandProfile.budget] || 0;
+  const catMet = creator.cat === brandProfile.category;
+  const followerMet = parseFollowers(creator.followers) >= minFollowers;
+  const isMatch = catMet && followerMet;
+  const status = isMatch ? 'pending' : 'longshot';
+  brandCollabRequests.push({creator, status, id: creator.name});
+  if(isMatch){
+    showMatchToast(creator.name);
+    const delay = 3000 + Math.random()*4000;
+    setTimeout(()=>progressBrandCollab(creator.name), delay);
+  }
+  renderBrandCollabs();
+  renderCreatorsGrid();
+  updateBrandBadges();
+}
+
+function progressBrandCollab(creatorName){
+  const c = brandCollabRequests.find(c=>c.id===creatorName);
+  if(!c) return;
+  const roll = Math.random();
+  c.status = roll<0.5 ? 'accepted' : 'messaged';
+  if(!brandChatThreads[creatorName]) brandChatThreads[creatorName] = {messages:[], unread:true};
+  if(c.status==='messaged'){
+    brandChatThreads[creatorName].messages.push({from:'them', text: creatorOpener()});
+  } else {
+    brandChatThreads[creatorName].messages.push({from:'them', text:"I accepted your collab request! Excited to work together."});
+  }
+  brandChatThreads[creatorName].unread = true;
+  renderBrandCollabs();
+  renderBrandChatSidebar();
+  if(activeBrandChatCreator===creatorName) renderBrandChatMain();
+  updateBrandBadges();
+}
+
+function creatorOpener(){
+  const options = [
+    "Hey! I'd love to hear more about the collab details.",
+    "Hi — thanks for reaching out, when do you need content by?",
+    "This sounds fun, what's the budget range for this one?"
+  ];
+  return options[Math.floor(Math.random()*options.length)];
+}
+
+function updateBrandBadges(){
+  const collabBadge = document.getElementById('brand-collab-badge');
+  const newCount = brandCollabRequests.filter(c=>c.status==='accepted'||c.status==='messaged').length;
+  if(newCount>0){ collabBadge.style.display=''; collabBadge.textContent = String(newCount); } else collabBadge.style.display='none';
+  const chatBadge = document.getElementById('brand-chat-badge');
+  const unread = Object.values(brandChatThreads).filter(t=>t.unread).length;
+  if(unread>0){ chatBadge.style.display=''; chatBadge.textContent = String(unread); } else chatBadge.style.display='none';
+}
+
+/* ---- COLLABS / NOTIFICATIONS ---- */
+function renderBrandCollabs(){
+  const list = document.getElementById('brand-collab-list');
+  list.innerHTML='';
+  if(brandCollabRequests.length===0){
+    list.innerHTML = '<div class="collabs-empty">No collab requests yet — swipe right (or hit Collab) on a creator you like!</div>';
+    return;
+  }
+  brandCollabRequests.slice().reverse().forEach(c=>{
+    const [bg] = paletteFor(INFLUENCERS.findIndex(x=>x.name===c.creator.name));
+    const statusLabel = {pending:'Pending', longshot:'Long shot', accepted:'Accepted', messaged:'New message'}[c.status];
+    const item = document.createElement('div');
+    item.className = 'collab-item';
+    item.innerHTML = `
+      <div class="ci-mark" style="background:${bg}">${initials(c.creator.name)}</div>
+      <div class="ci-body"><h4>${c.creator.name}</h4><p>${c.creator.handle} · ${c.creator.bio}</p></div>
+      <span class="ci-status ${c.status}">${statusLabel}</span>
+      ${(c.status==='accepted'||c.status==='messaged') ? `<button class="ci-chat-btn" data-creator="${c.creator.name}">Chat</button>` : ''}
+    `;
+    const btn = item.querySelector('.ci-chat-btn');
+    if(btn) btn.addEventListener('click', ()=>openBrandChatFor(c.creator.name));
+    list.appendChild(item);
+  });
+}
+
+function openBrandChatFor(creatorName){
+  switchBrandDashView('chat');
+  activeBrandChatCreator = creatorName;
+  if(brandChatThreads[creatorName]) brandChatThreads[creatorName].unread=false;
+  renderBrandChatSidebar();
+  renderBrandChatMain();
+  updateBrandBadges();
+}
+
+/* ---- CHAT ---- */
+function renderBrandChatSidebar(){
+  const sidebar = document.getElementById('brand-chat-sidebar');
+  sidebar.innerHTML='';
+  const names = Object.keys(brandChatThreads);
+  if(names.length===0){
+    sidebar.innerHTML = '<div class="chat-sidebar-empty">Match with a creator and get a reply to start chatting.</div>';
+    return;
+  }
+  names.forEach(name=>{
+    const [bg] = paletteFor(INFLUENCERS.findIndex(x=>x.name===name));
+    const thread = brandChatThreads[name];
+    const last = thread.messages[thread.messages.length-1];
+    const contact = document.createElement('div');
+    contact.className = 'chat-contact' + (activeBrandChatCreator===name ? ' active':'');
+    contact.innerHTML = `
+      <div class="cc-mark" style="background:${bg}">${initials(name)}</div>
+      <div class="cc-body"><h5>${name}</h5><p>${last ? (last.from==='me'?'You: ':'') + last.text : 'Say hi!'}</p></div>
+      ${thread.unread ? '<div class="cc-dot"></div>' : ''}
+    `;
+    contact.addEventListener('click', ()=>openBrandChatFor(name));
+    sidebar.appendChild(contact);
+  });
+}
+
+function renderBrandChatMain(){
+  const main = document.getElementById('brand-chat-main');
+  if(!activeBrandChatCreator || !brandChatThreads[activeBrandChatCreator]){
+    main.innerHTML = '<div class="chat-empty">Select a conversation to start chatting</div>';
+    return;
+  }
+  const [bg] = paletteFor(INFLUENCERS.findIndex(x=>x.name===activeBrandChatCreator));
+  const thread = brandChatThreads[activeBrandChatCreator];
+  main.innerHTML = `
+    <div class="chat-header"><div class="cc-mark" style="background:${bg}">${initials(activeBrandChatCreator)}</div><h4>${activeBrandChatCreator}</h4></div>
+    <div class="chat-messages" id="brand-chat-messages"></div>
+    <div class="chat-input-row">
+      <input type="text" id="brand-chat-input" placeholder="Message ${activeBrandChatCreator}...">
+      <button id="brand-chat-send-btn">Send</button>
+    </div>
+  `;
+  const msgsEl = document.getElementById('brand-chat-messages');
+  thread.messages.forEach(m=>{
+    const div = document.createElement('div');
+    div.className = 'msg ' + (m.from==='me'?'me':'brand');
+    div.textContent = m.text;
+    msgsEl.appendChild(div);
+  });
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+  document.getElementById('brand-chat-send-btn').addEventListener('click', sendBrandChatMessage);
+  document.getElementById('brand-chat-input').addEventListener('keydown', e=>{ if(e.key==='Enter') sendBrandChatMessage(); });
+}
+
+function sendBrandChatMessage(){
+  const input = document.getElementById('brand-chat-input');
+  const text = input.value.trim();
+  if(!text || !activeBrandChatCreator) return;
+  brandChatThreads[activeBrandChatCreator].messages.push({from:'me', text});
+  input.value='';
+  renderBrandChatMain();
+  renderBrandChatSidebar();
+  const creatorName = activeBrandChatCreator;
+  setTimeout(()=>{
+    const replies = [
+      "Sounds good, let's move forward!",
+      "Got it — I'll get you the content plan.",
+      "Perfect, I can start shooting this week.",
+      "Love that idea, let's do it."
+    ];
+    if(!brandChatThreads[creatorName]) return;
+    brandChatThreads[creatorName].messages.push({from:'them', text: replies[Math.floor(Math.random()*replies.length)]});
+    brandChatThreads[creatorName].unread = activeBrandChatCreator!==creatorName;
+    if(activeBrandChatCreator===creatorName) renderBrandChatMain();
+    renderBrandChatSidebar();
+    updateBrandBadges();
+  }, 1400+Math.random()*1200);
+}
+
+/* ---- BRAND POSTS (post about your business) ---- */
+function toggleBrandPostForm(){
+  const form = document.getElementById('brand-post-form');
+  form.style.display = form.style.display==='none' ? '' : 'none';
+}
+
+document.getElementById('brand-post-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const title = document.getElementById('brand-post-title').value || 'Untitled';
+  const type = document.getElementById('brand-post-type').value;
+  const url = document.getElementById('brand-post-url').value;
+  const desc = document.getElementById('brand-post-desc').value;
+  brandPosts.unshift({title,type,url,desc});
+  this.reset();
+  document.getElementById('brand-post-form').style.display='none';
+  renderBrandPosts();
+});
+
+function renderBrandPosts(){
+  const grid = document.getElementById('brand-posts-grid');
+  grid.innerHTML='';
+  if(brandPosts.length===0){
+    grid.innerHTML = '<div class="portfolio-empty">No posts yet — introduce your business above.</div>';
+    return;
+  }
+  brandPosts.forEach(p=>{
+    const card = document.createElement('div');
+    card.className='post-card';
+    let mediaHtml = 'preview unavailable';
+    if(p.url && p.type==='image') mediaHtml = `<img src="${p.url}" alt="${p.title}">`;
+    else if(p.url && p.type==='video') mediaHtml = `<video src="${p.url}" controls></video>`;
+    card.innerHTML = `
+      <div class="post-media">${mediaHtml}</div>
+      <div class="post-body">
+        <span class="post-type-chip">${p.type}</span>
+        <h4>${p.title}</h4>
+        <p>${p.desc||''}</p>
+      </div>
     `;
     grid.appendChild(card);
   });
