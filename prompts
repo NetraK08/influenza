@@ -1,1 +1,9 @@
 ✕ , ♥  these two buttons for pass or accepting the collab make them both interactoive yet minimal aesthetic
+
+
+pip install opencv-python numpy
+python generate_video.py
+
+
+
+pip install opencv-python
